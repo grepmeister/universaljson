@@ -123,15 +123,20 @@ Full page, annotated...
 
 image::assets/full_ruleset_annotated.png[]
 
-== Demo agent output
+== Demo agent output for testing
 
 * link:assets/universaljson.txt[universaljson.txt]
 * e.g. put it in the https://docs.checkmk.com/latest/en/spool_directory.html[spool directory], usually `/var/lib/check_mk_agent/spool/`
 
+== Demo agent plugin config-generations-per-second.py
+
+* One service per site with one metric to show the Config generations per second.
+* https://raw.githubusercontent.com/grepmeister/universaljson/refs/heads/main/assets/usr/lib/check_mk_agent/plugins/config-generations-per-second.py[]
+
 == TODO
 
 * introduce a timestamp field to the JSON data and allow to warn if JSON data is outdated
-* smooth the metric measurements with "truncated mean" a.k.a. trimmed mean (from the recent 5 past measurements drop the highest and the lowest and average the remaining 3) to avoid false alerts.
+* smooth the metric measurements with a "truncated mean" a.k.a. "trimmed mean"" (from the recent 5 past measurements drop the highest and the lowest and average the remaining 3) to avoid false alerts.
 * add type hints to Python code
 * An "universal http(s) agent data fetcher" is in the pipe and will play well together with this check
 
