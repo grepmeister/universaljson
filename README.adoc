@@ -1,7 +1,7 @@
 = UniversalJSON
 
-* This is a check plugin for checkmk with a ruleset.
-* It aims to be a "better" *local* check.
+*This is a check plugin for checkmk with a ruleset.*
+It aims to be a "better" *local* check.
 
 == Advantages over local check
 
@@ -16,7 +16,8 @@
 
 === Example: One service with details summary in OK state
 
-.simple example
+.Simple example
+[source]
 ----
 <<<universaljson:sep(0)>>>
 {"services":{"service0":{"summary":"summary for service0","details":"details for service0, expected to be OK","state":0}}}
@@ -24,7 +25,7 @@
 
 TIP: As common with checkmk, the JSON is expected to be on one line.
 
-.human readable
+.Human readable
 [source,json,linenums]
 ----
 {
@@ -38,10 +39,11 @@ TIP: As common with checkmk, the JSON is expected to be on one line.
 }
 ----
 
-TIP
+[TIP]
 ====
 Here it's just pretty printed to make it easier to understand the structure of the JSON.
 You can format your JSON to a single line with:
+[source, bash]
 ----
 jq -c < file.json
 jq --compact-output < file.json
@@ -50,13 +52,14 @@ jq --compact-output < file.json
 
 === Example: more complex JSON
 
-.more complex JSON example
+.More complex JSON example
+[source]
 ----
 <<<universaljson:sep(0)>>>
 {"services":{"service0":{"summary":"summary for service0","details":"details for service0, expected to be OK","state":0},"service1":{"summary":"summary for service1","details":"details for service1, expected to be WARN","state":1},"service2":{"summary":"summary for service2","details":"details for service2, expected to be CRIT","state":2},"service3":{"summary":"summary for service3","details":"details for service3, expected to be UNK","state":3},"service4":{"state":0,"summary":"summary for service4","details":"details for service4","metrics":{"temp":46,"humidity":70}},"service5":{"summary":"summary for service5","details":"details for service5, it's a counter","metrics":{"mycounter":"1754224044c"}}}}
 ----
 
-.human readable
+.Human readable
 [source,json,linenums]
 ----
 {
@@ -102,27 +105,29 @@ jq --compact-output < file.json
 ----
 
 .Explanation
-* service4 genereates two float metrics *temp* and *humidity*.
-* service5 generates a metric which is actually a *counter* because it's a string (using "quotes") and has a suffix of *c*, like it was common in nagios compatible checks.
+
+* `service4` generates two float metrics *temp* and *humidity*.
+* `service5` generates a metric which is actually a *counter* because it's a string (using "quotes") and has a suffix of `c`, like it was common in nagios compatible checks.
 
 image::assets/services.png[]
 
 == Ruleset
- 
+
 image::assets/full_ruleset.png[]
 
-Full page, annotated ....
+Full page, annotated...
 
 image::assets/full_ruleset_annotated.png[]
 
 == Demo agent output
 
 * link:assets/universaljson.txt[universaljson.txt]
-* e.g. put it in https://docs.checkmk.com/latest/en/spool_directory.html[spool directory], usually /var/lib/check_mk_agent/spool/
+* e.g. put it in the https://docs.checkmk.com/latest/en/spool_directory.html[spool directory], usually `/var/lib/check_mk_agent/spool/`
 
 == TODO
 
-* introduce a timestamp field to the json data and allow to warn if json data is outdated
-* smooth the metric measurements with "truncated mean" a.k.a. trimmed mean (from the recent 5 past measurments drop the higest and the lowest and average the remaining 3) to avoid false alerts.
-* add type hints to python code
-* An "universal http(s) agent data fetcher" is in the pipe and will play well together with this check 
+* introduce a timestamp field to the JSON data and allow to warn if JSON data is outdated
+* smooth the metric measurements with "truncated mean" a.k.a. trimmed mean (from the recent 5 past measurements drop the highest and the lowest and average the remaining 3) to avoid false alerts.
+* add type hints to Python code
+* An "universal http(s) agent data fetcher" is in the pipe and will play well together with this check
+
