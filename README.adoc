@@ -125,3 +125,4 @@ image::assets/full_ruleset_annotated.png[]
 * introduce a timestamp field to the json data and allow to warn if json data is outdated
 * smooth the metric measurements with "truncated mean" a.k.a. trimmed mean (from the recent 5 past measurments drop the higest and the lowest and average the remaining 3) to avoid false alerts.
 * add type hints to python code
+* An "universal http(s) agent data fetcher" is in the pipe and will play well together with this check 
