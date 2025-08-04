@@ -22,7 +22,7 @@
 {"services":{"service0":{"summary":"summary for service0","details":"details for service0, expected to be OK","state":0}}}
 ----
 
-HINT: As common with checkmk, the JSON is expected to be on one line.
+TIP: As common with checkmk, the JSON is expected to be on one line.
 
 .human readable
 [source,json,linenums]
@@ -38,7 +38,7 @@ HINT: As common with checkmk, the JSON is expected to be on one line.
 }
 ----
 
-HINT
+TIP
 ====
 Here it's just pretty printed to make it easier to understand the structure of the JSON.
 You can format your JSON to a single line with:
