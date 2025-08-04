@@ -17,9 +17,9 @@
 # SPDX-License-Identifier: GPL-2.0
 
 try:
-    import pprintpp as pp
+    from pprintpp import pprint as pp
 except ImportError:
-    import pprint as pp
+    from pprint import pprint as pp
 
 import json
 import glob
@@ -29,7 +29,7 @@ import os
 output = {}
 
 # this will contain a list of services
-output["services"] = []
+output["services"] = {}
 
 for basepath in glob.glob("/opt/omd/sites/*"):
     site = os.path.basename(basepath)
@@ -39,15 +39,12 @@ for basepath in glob.glob("/opt/omd/sites/*"):
         with open(filepath, "r") as file:
             rate = file.read().strip()
 
-        entry = {
-            f"Config generation {site}": {
+        output["services"][f"Config generation {site}"] = {
                 "summary": f"Config generation {site}",
                 "details": f"Config generation {site}",
                 "metrics": {"rate": f"{rate}c"},
-            }
         }
 
-        output["services"].append(entry)
 
 print("<<<universaljson:sep(0)>>>")
 print(json.dumps(output))
