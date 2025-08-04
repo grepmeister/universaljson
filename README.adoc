@@ -1,14 +1,16 @@
 = UniversalJSON
 
-*This is a check plugin for checkmk with a ruleset.*
-It aims to be a "better" *local* check.
+* This is a check plugin for checkmk with a ruleset.
+* It aims to be a "better" *local* check.
+
+* link:assets/assets/universaljson-1.0.0.mkp[]
 
 == Advantages over local check
 
 * Agent section data is structured JSON.
 * The agent can decide if the state is OK, WARNING, CRITICAL, or UNKNOWN just like with local checks ...
-* 🍾 But you can configure service rules to override the state based on if threshold value are exceeded.
-* In other words: If you have metrics, you can configure thresholds on the checkmk server.
+* But you can configure service rules to override the state if threshold values are exceeded or too low.
+* In other words: If you have metrics, you can configure thresholds on the checkmk server🎉.
 * Unlike local checks it supports counters 🍻 !!!
 * You can emit your own details and summary.
 
@@ -23,7 +25,7 @@ It aims to be a "better" *local* check.
 {"services":{"service0":{"summary":"summary for service0","details":"details for service0, expected to be OK","state":0}}}
 ----
 
-TIP: As common with checkmk, the JSON is expected to be on one line.
+TIP: As common with checkmk, the JSON is expected to be on one line in the agent output.
 
 .Human readable
 [source,json,linenums]
@@ -107,7 +109,7 @@ jq --compact-output < file.json
 .Explanation
 
 * `service4` generates two float metrics *temp* and *humidity*.
-* `service5` generates a metric which is actually a *counter* because it's a string (using "quotes") and has a suffix of `c`, like it was common in nagios compatible checks.
+* `service5` generates a metric which is actually a *counter* because it's a JSON string and not a float (using "quotes") and has a suffix of `c`, like it was common in nagios compatible checks.
 
 image::assets/services.png[]
 
