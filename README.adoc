@@ -117,7 +117,7 @@ image::assets/full_ruleset_annotated.png[]
 
 == Demo agent output
 
-* link:asset/universaljson.txt[universaljson.txt]
+* link:assets/universaljson.txt[universaljson.txt]
 * e.g. put it in https://docs.checkmk.com/latest/en/spool_directory.html[spool directory]
 
 == TODO
