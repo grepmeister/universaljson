@@ -1,7 +1,7 @@
 = UniversalJSON
 
 * This is a check plugin for checkmk with a ruleset.
-* It aims to be a "better" ``<<<local>>>`` check.
+* It aims to be a "better" pass:[<<<local>>>] check.
 
 == Advantages over local check
 
