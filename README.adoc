@@ -3,7 +3,7 @@
 * This is a check plugin for checkmk with a ruleset.
 * It aims to be a "better" *local* check.
 
-* link:assets/universaljson-1.0.0.mkp[]
+Download mkp link:raw/refs/heads/main/assets/universaljson-1.0.0.mkp[]
 
 == Advantages over local check
 
