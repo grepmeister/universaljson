@@ -14,7 +14,13 @@ from cmk.agent_based.v2 import (
     GetRateError,
 )
 
-from pprintpp import pprint as pp
+# pprintpp is much nicer for debugging
+# but checkmk only ships pprint
+try:
+    import pprintpp as pp
+except ImportError:
+    import pprint as pp
+
 import json
 import time
 
@@ -22,18 +28,20 @@ import time
 # UOM: s, us, ms, %, B, KB, MB, TB, c
 # 'label'=value[UOM];[warn];[crit];[min];[max]
 
+
 def lookup_metric_threshold(metric, params):
     # check if params contain a dict with metrics_thresholds
     if metrics_thresholds := params.get("metrics_thresholds"):
         # for each entry check if there are upper and/or lower levels
         for entry in metrics_thresholds:
-            if entry['metric']['name'] == metric:
-                return({
-                    "upper" : entry['metric'].get('upper'),
-                    "lower" : entry['metric'].get('lower'),
-                })
+            if entry["metric"]["name"] == metric:
+                return {
+                    "upper": entry["metric"].get("upper"),
+                    "lower": entry["metric"].get("lower"),
+                }
     else:
         return {}
+
 
 # map integers to chekcmk State.<constant>
 # because the agent data provides these integers
@@ -54,7 +62,7 @@ def parse_universaljson(string_table):
 
 def discover_universaljson(section):
     for service in section["services"]:
-        #yield Service(item=service, parameters={"discovered": "parameter"})
+        # yield Service(item=service, parameters={"discovered": "parameter"})
         yield Service(item=service)
 
 
@@ -100,8 +108,8 @@ def check_universaljson(item, params, section):
             # unfortunateley check_level overwrites my summary and details :-(, or? can i yield my own?
             yield from check_levels(
                 value,
-                levels_upper=levels.get('upper'),
-                levels_lower=levels.get('lower'),
+                levels_upper=levels.get("upper"),
+                levels_lower=levels.get("lower"),
                 metric_name=metric,
                 label=metric,
                 notice_only=False,
