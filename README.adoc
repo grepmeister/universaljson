@@ -5,7 +5,7 @@
 
 Download mkp 
 
-https://github.com/grepmeister/universaljson/raw/refs/heads/main/assets/universaljson-1.0.1.mkp
+https://github.com/grepmeister/universaljson/raw/refs/heads/main/assets/universaljson-1.0.2.mkp
 
 == Advantages over local check
 
