@@ -30,12 +30,11 @@ from cmk.agent_based.v2 import (
     GetRateError,
 )
 
-# pprintpp is much nicer for debugging
-# but checkmk only ships pprint
+# In my opinion the output of pprintpp is much nicer than pprint but checkmk only ships pprint
 try:
-    import pprintpp as pp
+    from pprintpp import pprint as pp
 except ImportError:
-    import pprint as pp
+    from pprint import pprint as pp
 
 import json
 import time

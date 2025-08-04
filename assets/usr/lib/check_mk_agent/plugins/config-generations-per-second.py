@@ -16,6 +16,7 @@
 # <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>.
 # SPDX-License-Identifier: GPL-2.0
 
+# In my opinion the output of pprintpp is much nicer than pprint but checkmk only ships pprint
 try:
     from pprintpp import pprint as pp
 except ImportError:

@@ -1,6 +1,6 @@
 = UniversalJSON
 
-* This is a check plugin for checkmk with a ruleset.
+* This is a check plugin for checkmk >= 2.3 with a ruleset.
 * It aims to be a "better" *local* check.
 
 Download mkp 
@@ -10,13 +10,13 @@ https://github.com/grepmeister/universaljson/raw/refs/heads/main/assets/universa
 == Advantages over local check
 
 * Agent section data is structured JSON.
-* The agent can decide if the state is OK, WARNING, CRITICAL, or UNKNOWN just like with local checks ...
-* But you can configure service rules to override the state if threshold values are exceeded or too low.
-* In other words: If you have metrics, you can configure thresholds on the checkmk server🎉.
+* The agent can declare if the state is OK, WARNING, CRITICAL, or UNKNOWN just like with local checks ...
+* But in addition, you can configure service rules to *override the state* if threshold values are exceeded or too low.
+* In other words: If you have metrics, you can configure thresholds on the checkmk server for upper and lower limits 🎉.
 * Unlike local checks it supports counters 🍻 !!!
-* You can emit your own details and summary.
+* You can emit your own details and summary, seperatly.
 
-== How does this work?
+== How does it work?
 
 === Example: One service with details summary in OK state
 
@@ -45,8 +45,9 @@ TIP: As common with checkmk, the JSON is expected to be on one line in the agent
 
 [TIP]
 ====
-Here it's just pretty printed to make it easier to understand the structure of the JSON.
-You can format your JSON to a single line with:
+Above, it's pretty printed to make it easier to understand the structure of the JSON.
+The check plugin expects the JSON data on a single line!
+You can format your JSON to a single line e.g. with:
 [source, bash]
 ----
 jq -c < file.json
@@ -54,7 +55,7 @@ jq --compact-output < file.json
 ----
 ====
 
-=== Example: more complex JSON
+=== Example: more complex JSON with multiple services
 
 .More complex JSON example
 [source]
